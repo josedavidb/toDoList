@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'toDo',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'

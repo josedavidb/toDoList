@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>toDoList</title>
+  {% load static %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+    <nav class="menu-opener">
+    <div class="menu-opener-inner"></div>
+  </nav>
+  <nav class="menu">
+    <ul class="menu-inner">
+      <a href="/" class="menu-link">
+        <li>Inicio</li>
+      </a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}" class="menu-link">
+        <li>Cerrar sesión</li>
+      </a>
+      {% else %}
+      <a href="{% url 'login' %}" class="menu-link">
+        <li>Iniciar sesión</li>
+      </a>
+      <a href="{% url 'signup' %}" class="menu-link">
+        <li>Registro</li>
+      </a>
+      {% endif %}
+      <a href="#" class="menu-link">
+        <li>Contact</li>
+      </a>
+    </ul>
+  </nav>
+    {% block content %}
+    {% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{% static 'js/menu-opener.js' %}"></script>
+</body>
+</html>
