@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
 from .models import TodoList, Category
+from django.contrib.auth.decorators import login_required
 
+
+@login_required
 def index(request): #the index view
     todos = TodoList.objects.all() #quering all todos with the object manager
     categories = Category.objects.all() #getting all categories with object manager
@@ -14,8 +17,21 @@ def index(request): #the index view
             Todo.save() #saving the todo 
             return redirect("/") #reloading the page
         if "taskDelete" in request.POST: #checking if there is a request to delete a todo
-            checkedlist = request.POST["checkedbox"] #checked todos to be deleted
+            checkedlist = request.POST.getlist("checkedbox") #checked todos to be deleted
             for todo_id in checkedlist:
                 todo = TodoList.objects.get(id=int(todo_id)) #getting todo id
                 todo.delete() #deleting todo
+        if "taskReady" in request.POST: #checking if there is a request to delete a todo
+            checkedlist = request.POST.getlist("checkedbox") #checked todos to be deleted
+            print(checkedlist)
+            for todo_id in checkedlist:
+                todo = TodoList.objects.get(id=int(todo_id)) #getting todo id
+                todo.status = 2
+                todo.save() #deleting todo
+        if "taskPending" in request.POST: #checking if there is a request to delete a todo
+            checkedlist = request.POST.getlist("checkedbox")
+            for todo_id in checkedlist:
+                todo = TodoList.objects.get(id=int(todo_id))
+                todo.status = 1 #getting todo id
+                todo.save() #deleting todo
     return render(request, "index.html", {"todos": todos, "categories":categories})
