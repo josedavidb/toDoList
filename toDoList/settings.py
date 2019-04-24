@@ -93,6 +93,17 @@ DATABASES_LIST = {
         'PORT': 5432,
 
     },
+    'todolist-django-app': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd6qmts10flb9qd',
+        'USER': 'oiasvcizlibhvb',
+        'PASSWORD': 'afa4da4d60d1b5f749782b0c7887f3e3f43ab754875ce8f52c6ad5557ea6a1e4',
+        'HOST': 'ec2-54-243-197-120.compute-1.amazonaws.com',
+        'PORT': '5432',
+        'OPTIONS': {
+            'connect_timeout': None,
+        }
+    }
 }
 
 DATABASES = {'default': DATABASES_LIST[CUR_DOMAIN]}

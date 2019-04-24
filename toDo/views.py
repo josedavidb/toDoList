@@ -23,7 +23,6 @@ def index(request): #the index view
                 todo.delete() #deleting todo
         if "taskReady" in request.POST: #checking if there is a request to delete a todo
             checkedlist = request.POST.getlist("checkedbox") #checked todos to be deleted
-            print(checkedlist)
             for todo_id in checkedlist:
                 todo = TodoList.objects.get(id=int(todo_id)) #getting todo id
                 todo.status = 2
